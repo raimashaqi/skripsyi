@@ -37,9 +37,9 @@ CLASSES = [
     "Onychogryphosis",
     "Onychomycosis",
     "Pitting",
+    "Beau's line",
     "Onycholysis",
-    "Psoriasis",
-    "Beau's line"
+    "Psoriasis"
 ]
 
 # --- Global Variables for Models ---
