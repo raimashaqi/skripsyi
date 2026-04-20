@@ -12,20 +12,30 @@ class HomeScreen extends StatelessWidget {
       extendBodyBehindAppBar: true,
       backgroundColor: const Color(0xFFF8FAFC),
       appBar: AppBar(
-        title: const Text('Nail Checker (LIVE)'),
+        title: const Text('Nail Checker'),
         actions: [
-          IconButton(
-            onPressed: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(builder: (context) => const GuideScreen()),
-              );
-            },
-            icon: const Icon(Icons.help_outline),
-          ),
-          IconButton(
-            onPressed: () {},
+          PopupMenuButton<String>(
             icon: const Icon(Icons.more_vert),
+            onSelected: (value) {
+              if (value == 'guide') {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => const GuideScreen()),
+                );
+              }
+            },
+            itemBuilder: (BuildContext context) => [
+              const PopupMenuItem<String>(
+                value: 'guide',
+                child: Row(
+                  children: [
+                    Icon(Icons.help_outline, color: Color(0xFF0F172A), size: 20),
+                    SizedBox(width: 12),
+                    Text('Panduan Penggunaan'),
+                  ],
+                ),
+              ),
+            ],
           ),
         ],
       ),

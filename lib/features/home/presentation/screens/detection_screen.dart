@@ -144,14 +144,28 @@ class _DetectionScreenState extends State<DetectionScreen> {
           onPressed: () => Navigator.pop(context),
         ),
         actions: [
-          IconButton(
-            onPressed: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(builder: (context) => const GuideScreen()),
-              );
+          PopupMenuButton<String>(
+            icon: const Icon(Icons.more_vert),
+            onSelected: (value) {
+              if (value == 'guide') {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => const GuideScreen()),
+                );
+              }
             },
-            icon: const Icon(Icons.help_outline),
+            itemBuilder: (BuildContext context) => [
+              const PopupMenuItem<String>(
+                value: 'guide',
+                child: Row(
+                  children: [
+                    Icon(Icons.help_outline, color: Color(0xFF0F172A), size: 20),
+                    SizedBox(width: 12),
+                    Text('Panduan Penggunaan'),
+                  ],
+                ),
+              ),
+            ],
           ),
         ],
       ),
