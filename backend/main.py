@@ -114,7 +114,7 @@ async def predict(file: UploadFile = File(...)):
                 # Potong (Crop) gambar hanya pada area kuku ini
                 cropped_image = image.crop((x1, y1, x2, y2))
                 
-                # Konversi cropped image ke base64
+                # Konverfsi cropped image ke base64
                 try:
                     buffered = io.BytesIO()
                     cropped_image.save(buffered, format="JPEG")
@@ -172,7 +172,7 @@ async def predict(file: UploadFile = File(...)):
     except Exception as e:
         import traceback
         error_details = traceback.format_exc()
-        logger.error(f"Error during prediction:\n{error_details}")
+        logger.error(f"Error during predictsion:\n{error_details}")
         raise HTTPException(status_code=500, detail=str(e))
 
 if __name__ == "__main__":
