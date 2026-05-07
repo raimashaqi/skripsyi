@@ -3,6 +3,135 @@ import 'dart:typed_data';
 import 'package:flutter/material.dart';
 import 'guide_screen.dart';
 
+// ---------------------------------------------------------------------------
+// Lookup table: backend label (lowercase) → {tentang, indikasi, saran, sehat}
+// ---------------------------------------------------------------------------
+const Map<String, Map<String, String>> _conditionInfo = {
+  'kuku sehat': {
+    'tentang':
+        'Kuku sehat ditandai dengan tekstur permukaan rata halus tanpa lubang '
+            '(pitting), alur longitudinal/transversal yang signifikan, atau retakan kasar.',
+    'indikasi': 'Tidak ada indikasi penyakit serius.',
+    'saran':
+        '• Jaga kebersihan kuku\n• Potong kuku secara teratur\n• Makan makanan bergizi',
+    'sehat': 'true',
+  },
+  'onychomycosis': {
+    'tentang':
+        'Onychomycosis ditandai dengan perubahan warna, penebalan lempeng kuku, '
+            'dan onikolisis sehingga kuku tampak rapuh dan mudah rusak.',
+    'indikasi': 'Indkasi diabetes melitus, '
+        'insufisiensi bena kronis, neuropati perifer, penyakit iskemik tungkai bawah, '
+        'HIV, serta kondisi pada pasien hemodialisis atau terapi imunosupresif ',
+    'saran':
+        '• Segera konsultasikan dengan dokter kulit atau tenaga medis profesional.\n'
+            '• Jaga area tetap bersih dan kering.',
+    'sehat': 'false',
+  },
+  'clubbing': {
+    'tentang':
+        'Clubbing finger ditandai dengan pembesaran ujung jari, peningkatan '
+            'kelengkungan kuku, dan sudut Lovibond >180°, disertai hilangnya '
+            "Schamroth's window, rasio Rice & Rowland >1, serta sensasi lunak "
+            'pada dasar kuku.',
+    'indikasi': 'Indikasi keganasan paru, penyakit jantung bawaan sianotik, '
+        'bronkiektasis, tuberkulosis, sirosis hati, dan penyakit radang usus.',
+    'saran':
+        '• Segera konsultasikan dengan dokter kulit atau tenaga medis profesional.\n'
+            '• Jaga area tetap bersih dan kering.',
+    'sehat': 'false',
+  },
+  'blue finger': {
+    'tentang':
+        'Blue finger didefinisikan sebagai perubahan warna menjadi nuansa ungu-biru pada '
+            'satu atau lebih jari '
+            'dan umumnya disertai rasa nyeri di area yang mengalami perubahan warna.',
+    'indikasi': 'Indikasi adanya gangguan vaskular '
+        'sistemik seperti trombosis, emboli, vasokonstriksi berat, lupus, '
+        'penyakit respirasi atau sirkulasi.',
+    'saran':
+        '• Segera konsultasikan dengan dokter kulit atau tenaga medis profesional.\n'
+            '• Jaga area tetap bersih dan kering.',
+    'sehat': 'false',
+  },
+  'onychogryphosis': {
+    'tentang': 'Onychogryphosis ditandai lempeng kuku yang sangat menebal, '
+        'opak kekuningan hingga cokelat, memanjang dan melengkung ekstrem seperti '
+        'tanduk, tampak sebagai kuku besar, kasar, dan terpuntir pada foto.',
+    'indikasi': 'Onychogryphosis berhubungan '
+        'dengan usia lanjut, keterbatasan perawatan diri, trauma kaki kronis, '
+        'psoriasis, onikomikosis, kelainan bentuk jari kaki, penyakit vaskular '
+        'perifer, ulkus tungkai, varises, dan diabetes melitus tipe 2 ',
+    'saran':
+        '• Segera konsultasikan dengan dokter kulit atau tenaga medis profesional.\n'
+            '• Jaga area tetap bersih dan kering.',
+    'sehat': 'false',
+  },
+  'pitting': {
+    'tentang':
+        'Pitting kuku tampak sebagai banyak lekukan kecil di permukaan lempeng, '
+            'yang pada citra klinis menampilkan pola titik-titik cekung berulang tanpa '
+            'perubahan drastis pada bentuk global kuku',
+    'indikasi': 'Indikasi psoriasis dan alopecia '
+        'areata.',
+    'saran':
+        '• Segera konsultasikan dengan dokter kulit atau tenaga medis profesional.\n'
+            '• Jaga area tetap bersih dan kering.',
+    'sehat': 'false',
+  },
+  'psoriasis': {
+    'tentang':
+        'Psoriasis kuku adalah kondisi autoimun kronis di mana peradangan menyebabkan sel-sel kulit di bawah kuku tumbuh terlalu cepat, memicu perubahan struktur seperti lubang kecil, penebalan, perubahan warna, hingga kuku lepas. ',
+    'indikasi': 'Autoimun psoriasis.',
+    'saran':
+        '• Segera konsultasikan dengan dokter kulit atau tenaga medis profesional.\n'
+            '• Jaga area tetap bersih dan kering.',
+    'sehat': 'false',
+  },
+  'onycholysis': {
+    'tentang': 'Onikolisis merupakan kondisi terlepasnya lempeng kuku dari nail bed yang '
+        'umumnya dimulai dari bagian distal akibat gangguan pada onychocorneal band '
+        'dan dapat berkembang ke arah proksimal, sehingga menyebabkan terbentuknya '
+        'ruang berisi udara di bawah kuku yang membuat kuku tampak berwarna putih.',
+    'indikasi': 'Indikasiinfeksi jamur, '
+        'psoriasis, penyakit jaringan ikat seperti systemic lupus erythematosus (SLE), '
+        'systemic sclerosis, dermatomyositis, gangguan tiroid seperti hipertiroidisme '
+        'dan hipotiroidisme, serta reaksi fototoksik akibat paparan obat tertentu '
+        'atau cahaya (photo-onycholysis).',
+    'saran':
+        '• Segera konsultasikan dengan dokter kulit atau tenaga medis profesional.\n'
+            '• Jaga area tetap bersih dan kering.',
+    'sehat': 'false',
+  },
+  'acral lentiginous melanoma': {
+    'tentang': 'ALM merupakan subtipe melanoma kutan yang muncul di kulit akral (telapak, '
+        'telapak kaki, dan unit kuku) dan sering tampak sebagai pita atau bercak '
+        'cokelat–hitam di bawah kuku, dengan batas asimetris, warna tidak seragam, '
+        'pelebaran progresif, kadang disertai distorsi atau destruksi lempeng kuku ',
+    'indikasi': 'Sering salah disangka hematoma, onikomikosis, atau '
+        'melanonychia jinak, mengakibatkan keterlambatan diagnosis dan prognosis yang '
+        'lebih buruk dibanding melanoma non-akral.',
+    'saran':
+        '• Segera konsultasikan dengan dokter kulit atau tenaga medis profesional.\n'
+            '• Jaga area tetap bersih dan kering.',
+    'sehat': 'false',
+  },
+  "beau's line": {
+    'tentang': "Beau's lines merupakan kelainan kuku yang ditandai dengan munculnya lekukan "
+        'atau garis melintang pada lempeng kuku akibat terjadinya gangguan sementara '
+        'pada pertumbuhan matriks kuku. Ciri fisiknya berupa garis atau alur melintang '
+        'pada permukaan kuku yang bergerak ke arah distal seiring pertumbuhan kuku.',
+    'indikasi':
+        'Indikasi hand-foot-mouth disease (HFMD), infeksi SARS-CoV-2 (COVID-19), '
+            'Stevens-Johnson syndrome (SJS), toxic epidermal necrolysis (TEN), '
+            'gagal ginjal kronis, dan diabetes mellitus tipe 2.',
+    'saran':
+        '• Segera konsultasikan dengan dokter kulit atau tenaga medis profesional.\n'
+            '• Jaga area tetap bersih dan kering.',
+    'sehat': 'false',
+  },
+};
+
 class ResultScreen extends StatefulWidget {
   final Map<String, dynamic>? resultData;
   final String? imagePath;
@@ -85,23 +214,18 @@ class _ResultScreenState extends State<ResultScreen> {
         _gradcamImageBytes = null;
       }
 
-      if (_diagnosis.toLowerCase() == 'kuku sehat') {
-        _isHealthy = true;
-        _tentangKondisi =
-            'Kuku ini terlihat dalam kondisi sehat tanpa tanda-tanda penyakit yang jelas.';
-        _indikasiKlinis =
-            '• Warna kuku normal\n• Permukaan kuku halus\n• Tidak ada penebalan';
-        _saranTindakan =
-            '• Jaga kebersihan kuku\n• Potong kuku secara teratur\n• Makan makanan bergizi';
-      } else {
-        _isHealthy = false;
-        _tentangKondisi =
-            'Terdeteksi kemungkinan indikasi $_diagnosis pada kuku ini.';
-        _indikasiKlinis =
-            '• Perubahan pada struktur atau warna kuku yang terdeteksi oleh sistem AI.';
-        _saranTindakan =
-            '• Segera konsultasikan dengan dokter kulit atau tenaga medis profesional.\n• Jaga area tetap bersih dan kering.';
-      }
+      // Lookup kondisi dari map menggunakan label lowercase
+      final diagLower = _diagnosis.toLowerCase();
+      final info = _conditionInfo[diagLower];
+
+      _isHealthy = info?['sehat'] == 'true';
+      _tentangKondisi = info?['tentang'] ??
+          'Terdeteksi kemungkinan indikasi $_diagnosis pada kuku ini.';
+      _indikasiKlinis = info?['indikasi'] ??
+          'Perubahan pada struktur atau warna kuku yang terdeteksi oleh sistem AI.';
+      _saranTindakan = info?['saran'] ??
+          '• Segera konsultasikan dengan dokter kulit atau tenaga medis profesional.\n'
+              '• Jaga area tetap bersih dan kering.';
     });
   }
 

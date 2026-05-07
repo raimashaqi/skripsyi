@@ -7,7 +7,8 @@ class GuideScreen extends StatefulWidget {
   State<GuideScreen> createState() => _GuideScreenState();
 }
 
-class _GuideScreenState extends State<GuideScreen> with SingleTickerProviderStateMixin {
+class _GuideScreenState extends State<GuideScreen>
+    with SingleTickerProviderStateMixin {
   late TabController _tabController;
 
   @override
@@ -169,20 +170,27 @@ class _GuideScreenState extends State<GuideScreen> with SingleTickerProviderStat
                         shape: BoxShape.circle,
                         border: Border.all(color: Colors.white, width: 2),
                       ),
-                      child: const Icon(Icons.center_focus_strong, color: Colors.white, size: 32),
+                      child: const Icon(Icons.center_focus_strong,
+                          color: Colors.white, size: 32),
                     ),
                   ),
                 ),
                 const SizedBox(height: 24),
                 const Text(
                   'Apa itu Heatmap AI?',
-                  style: TextStyle(color: Color(0xFF0F172A), fontSize: 18, fontWeight: FontWeight.bold),
+                  style: TextStyle(
+                      color: Color(0xFF0F172A),
+                      fontSize: 18,
+                      fontWeight: FontWeight.bold),
                 ),
                 const SizedBox(height: 12),
                 Text(
                   'Teknologi visualisasi yang menunjukkan bagian kuku mana yang dianggap paling penting oleh Kecerdasan Buatan dalam menentukan diagnosis.',
                   textAlign: TextAlign.center,
-                  style: TextStyle(color: const Color(0xFF64748B), height: 1.6, fontSize: 14),
+                  style: TextStyle(
+                      color: const Color(0xFF64748B),
+                      height: 1.6,
+                      fontSize: 14),
                 ),
               ],
             ),
@@ -195,7 +203,7 @@ class _GuideScreenState extends State<GuideScreen> with SingleTickerProviderStat
             [
               'Merah: Area krusial indikasi penyakit',
               'Kuning: Area pendukung diagnosis',
-              'Biru: Area normal / sehat',
+              'Biru: Area yang tidak diperhatikan AI',
             ],
           ),
           const SizedBox(height: 30),
@@ -223,20 +231,28 @@ class _GuideScreenState extends State<GuideScreen> with SingleTickerProviderStat
         children: [
           const Row(
             children: [
-              Icon(Icons.photo_camera_front, color: Color(0xFF6366F1), size: 20),
+              Icon(Icons.photo_camera_front,
+                  color: Color(0xFF6366F1), size: 20),
               SizedBox(width: 8),
               Text(
                 'Posisi Kamera Ideal',
-                style: TextStyle(color: Color(0xFF0F172A), fontSize: 16, fontWeight: FontWeight.bold),
+                style: TextStyle(
+                    color: Color(0xFF0F172A),
+                    fontSize: 16,
+                    fontWeight: FontWeight.bold),
               ),
             ],
           ),
           const SizedBox(height: 20),
           Row(
             children: [
-              Expanded(child: _buildGuideImageWithLabel('Tampak Atas', Icons.center_focus_strong_rounded)),
+              Expanded(
+                  child: _buildGuideImageWithLabel(
+                      'Tampak Atas', Icons.center_focus_strong_rounded)),
               const SizedBox(width: 16),
-              Expanded(child: _buildGuideImageWithLabel('Tampak Samping', Icons.rotate_90_degrees_ccw_rounded)),
+              Expanded(
+                  child: _buildGuideImageWithLabel(
+                      'Tampak Samping', Icons.rotate_90_degrees_ccw_rounded)),
             ],
           ),
         ],
@@ -261,13 +277,17 @@ class _GuideScreenState extends State<GuideScreen> with SingleTickerProviderStat
         const SizedBox(height: 12),
         Text(
           label,
-          style: const TextStyle(color: Color(0xFF334155), fontSize: 13, fontWeight: FontWeight.w600),
+          style: const TextStyle(
+              color: Color(0xFF334155),
+              fontSize: 13,
+              fontWeight: FontWeight.w600),
         ),
       ],
     );
   }
 
-  Widget _buildStepCard(String title, IconData icon, Color accentColor, List<String> steps) {
+  Widget _buildStepCard(
+      String title, IconData icon, Color accentColor, List<String> steps) {
     return Container(
       padding: const EdgeInsets.all(20),
       decoration: BoxDecoration(
@@ -298,32 +318,42 @@ class _GuideScreenState extends State<GuideScreen> with SingleTickerProviderStat
               const SizedBox(width: 12),
               Text(
                 title,
-                style: const TextStyle(color: Color(0xFF0F172A), fontSize: 16, fontWeight: FontWeight.bold),
+                style: const TextStyle(
+                    color: Color(0xFF0F172A),
+                    fontSize: 16,
+                    fontWeight: FontWeight.bold),
               ),
             ],
           ),
           const SizedBox(height: 20),
-          ...steps.map((step) => Padding(
-            padding: const EdgeInsets.only(bottom: 12.0),
-            child: Row(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Container(
-                  margin: const EdgeInsets.only(top: 6),
-                  width: 8,
-                  height: 8,
-                  decoration: BoxDecoration(color: accentColor, shape: BoxShape.circle),
-                ),
-                const SizedBox(width: 12),
-                Expanded(
-                  child: Text(
-                    step,
-                    style: const TextStyle(color: Color(0xFF475569), fontSize: 14, height: 1.5, fontWeight: FontWeight.w500),
-                  ),
-                ),
-              ],
-            ),
-          )).toList(),
+          ...steps
+              .map((step) => Padding(
+                    padding: const EdgeInsets.only(bottom: 12.0),
+                    child: Row(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Container(
+                          margin: const EdgeInsets.only(top: 6),
+                          width: 8,
+                          height: 8,
+                          decoration: BoxDecoration(
+                              color: accentColor, shape: BoxShape.circle),
+                        ),
+                        const SizedBox(width: 12),
+                        Expanded(
+                          child: Text(
+                            step,
+                            style: const TextStyle(
+                                color: Color(0xFF475569),
+                                fontSize: 14,
+                                height: 1.5,
+                                fontWeight: FontWeight.w500),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ))
+              .toList(),
         ],
       ),
     );
