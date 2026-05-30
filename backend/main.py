@@ -164,7 +164,7 @@ async def predict(files: List[UploadFile] = File(...)):
             
             # 3. Proses YOLO (Mencari Kuku)
             # Lakukan deteksi
-            results = yolo_model.predict(image, conf=0.2, verbose=False)
+            results = yolo_model.predict(image, conf=0.5, verbose=False)
             
             if len(results) > 0 and len(results[0].boxes) > 0:
                 logger.info(f"Terdeteksi {len(results[0].boxes)} kuku dalam gambar {file.filename}.")
