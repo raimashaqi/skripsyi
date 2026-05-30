@@ -29,7 +29,8 @@ class HomeScreen extends StatelessWidget {
                 value: 'guide',
                 child: Row(
                   children: [
-                    Icon(Icons.help_outline, color: Color(0xFF0F172A), size: 20),
+                    Icon(Icons.help_outline,
+                        color: Color(0xFF0F172A), size: 20),
                     SizedBox(width: 12),
                     Text('Panduan Penggunaan'),
                   ],

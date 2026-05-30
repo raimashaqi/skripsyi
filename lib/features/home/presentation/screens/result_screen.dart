@@ -18,10 +18,10 @@ const Map<String, Map<String, String>> _conditionInfo = {
   },
   'onychomycosis': {
     'tentang':
-        'Onychomycosis ditandai dengan perubahan warna, penebalan lempeng kuku, '
+        'Onychomycosis adalah infeksi jamur kuku yang ditandai dengan perubahan warna, penebalan lempeng kuku, '
             'dan onikolisis sehingga kuku tampak rapuh dan mudah rusak.',
     'indikasi': 'Indkasi diabetes melitus, '
-        'insufisiensi bena kronis, neuropati perifer, penyakit iskemik tungkai bawah, '
+        'insufisiensi vena kronis, gangguan imunitas,  neuropati perifer, penyakit iskemik tungkai bawah, '
         'HIV, serta kondisi pada pasien hemodialisis atau terapi imunosupresif ',
     'saran':
         '• Segera konsultasikan dengan dokter kulit atau tenaga medis profesional.\n'
@@ -72,8 +72,9 @@ const Map<String, Map<String, String>> _conditionInfo = {
         'Pitting kuku tampak sebagai banyak lekukan kecil di permukaan lempeng, '
             'yang pada citra klinis menampilkan pola titik-titik cekung berulang tanpa '
             'perubahan drastis pada bentuk global kuku',
-    'indikasi': 'Indikasi psoriasis dan alopecia '
-        'areata.',
+    'indikasi':
+        'Indikasi psoriasis, alopecia, eksim lichenplanus, GVHD, dan Rheumatoid Arthritis.'
+            'areata.',
     'saran':
         '• Segera konsultasikan dengan dokter kulit atau tenaga medis profesional.\n'
             '• Jaga area tetap bersih dan kering.',
@@ -82,7 +83,7 @@ const Map<String, Map<String, String>> _conditionInfo = {
   'psoriasis': {
     'tentang':
         'Psoriasis kuku adalah kondisi autoimun kronis di mana peradangan menyebabkan sel-sel kulit di bawah kuku tumbuh terlalu cepat, memicu perubahan struktur seperti lubang kecil, penebalan, perubahan warna, hingga kuku lepas. ',
-    'indikasi': 'Autoimun psoriasis.',
+    'indikasi': 'Autoimun psoriasis dan psoriasis arthritis',
     'saran':
         '• Segera konsultasikan dengan dokter kulit atau tenaga medis profesional.\n'
             '• Jaga area tetap bersih dan kering.',
@@ -122,7 +123,7 @@ const Map<String, Map<String, String>> _conditionInfo = {
         'pada pertumbuhan matriks kuku. Ciri fisiknya berupa garis atau alur melintang '
         'pada permukaan kuku yang bergerak ke arah distal seiring pertumbuhan kuku.',
     'indikasi':
-        'Indikasi hand-foot-mouth disease (HFMD), infeksi SARS-CoV-2 (COVID-19), '
+        'Indikasi hand-foot-mouth disease (HFMD), infeksi SARS-CoV-2 (COVID-19), trauma, manipulasi, onychopagia, onychotillomania, defisiensi zinc, CTS'
             'Stevens-Johnson syndrome (SJS), toxic epidermal necrolysis (TEN), '
             'gagal ginjal kronis, dan diabetes mellitus tipe 2.',
     'saran':

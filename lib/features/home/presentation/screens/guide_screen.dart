@@ -28,7 +28,7 @@ class _GuideScreenState extends State<GuideScreen>
     return Scaffold(
       extendBodyBehindAppBar: true,
       appBar: AppBar(
-        title: const Text('Pusat Panduan'),
+        title: const Text('Panduan'),
         leading: IconButton(
           icon: const Icon(Icons.arrow_back_ios_new),
           onPressed: () => Navigator.pop(context),
