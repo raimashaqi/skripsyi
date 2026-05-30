@@ -144,7 +144,7 @@ class _DetectionScreenState extends State<DetectionScreen> {
     return Scaffold(
       extendBodyBehindAppBar: true,
       appBar: AppBar(
-        title: const Text('Kamera'),
+        title: const Text('Deteksi'),
         leading: IconButton(
           icon: const Icon(Icons.arrow_back_ios_new),
           onPressed: () => Navigator.pop(context),
