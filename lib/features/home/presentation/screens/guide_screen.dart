@@ -264,11 +264,11 @@ class _GuideScreenState extends State<GuideScreen>
             children: [
               Expanded(
                   child: _buildGuideImageWithLabel(
-                      'Tampak Atas', Icons.center_focus_strong_rounded)),
+                      'Tampak Atas', 'assets/images/tampak_atas.jpg')),
               const SizedBox(width: 16),
               Expanded(
                   child: _buildGuideImageWithLabel(
-                      'Tampak Samping', Icons.rotate_90_degrees_ccw_rounded)),
+                      'Tampak Samping', 'assets/images/tampak_samping.jpg')),
             ],
           ),
         ],
@@ -276,18 +276,20 @@ class _GuideScreenState extends State<GuideScreen>
     );
   }
 
-  Widget _buildGuideImageWithLabel(String label, IconData icon) {
+  Widget _buildGuideImageWithLabel(String label, String imagePath) {
     return Column(
       children: [
         Container(
           height: 100,
+          width: double.infinity,
           decoration: BoxDecoration(
             color: const Color(0xFFEEF2FF),
             borderRadius: BorderRadius.circular(16),
             border: Border.all(color: const Color(0xFFE0E7FF)),
-          ),
-          child: Center(
-            child: Icon(icon, color: const Color(0xFF6366F1), size: 36),
+            image: DecorationImage(
+              image: AssetImage(imagePath),
+              fit: BoxFit.cover,
+            ),
           ),
         ),
         const SizedBox(height: 12),
