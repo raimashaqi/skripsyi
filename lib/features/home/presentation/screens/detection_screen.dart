@@ -85,7 +85,7 @@ class _DetectionScreenState extends State<DetectionScreen> {
 
       print('DEBUG: Mengirim request POST ke http://127.0.0.1:8000/predict');
       final response = await dio.post(
-        'http://127.0.0.1:8000/predict',
+        'https://dried-stipulate-employee.ngrok-free.dev/predict',
         data: formData,
       );
 
@@ -111,9 +111,41 @@ class _DetectionScreenState extends State<DetectionScreen> {
         setState(() {
           _isLoading = false;
         });
-        ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(content: Text('Gagal menghubungi server: $e')),
-        );
+
+        bool isTimeout = false;
+        if (e is DioException) {
+          if (e.type == DioExceptionType.connectionTimeout ||
+              e.type == DioExceptionType.receiveTimeout ||
+              e.type == DioExceptionType.sendTimeout) {
+            isTimeout = true;
+          }
+        }
+
+        if (isTimeout) {
+          showDialog(
+            context: context,
+            builder: (context) => AlertDialog(
+              shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(20)),
+              title: const Text(
+                'Waktu Habis',
+                style: TextStyle(fontWeight: FontWeight.bold),
+              ),
+              content: const Text(
+                  'Terlalu banyak kuku yang terdeteksi! Ulangi dengan kuku yang lebih sedikit, ya!'),
+              actions: [
+                TextButton(
+                  onPressed: () => Navigator.pop(context),
+                  child: const Text('OK'),
+                ),
+              ],
+            ),
+          );
+        } else {
+          ScaffoldMessenger.of(context).showSnackBar(
+            SnackBar(content: Text('Gagal menghubungi server: $e')),
+          );
+        }
       }
     }
   }
@@ -144,7 +176,23 @@ class _DetectionScreenState extends State<DetectionScreen> {
     return Scaffold(
       extendBodyBehindAppBar: true,
       appBar: AppBar(
-        title: const Text('Deteksi'),
+        title: Row(
+          children: [
+            Image.asset(
+              'assets/images/logo.png',
+              height: 36,
+              width: 36,
+            ),
+            const SizedBox(width: 10),
+            const Text(
+              'kuku KU',
+              style: TextStyle(
+                fontWeight: FontWeight.bold,
+                color: Color(0xFF0F172A),
+              ),
+            ),
+          ],
+        ),
         leading: IconButton(
           icon: const Icon(Icons.arrow_back_ios_new),
           onPressed: () => Navigator.pop(context),

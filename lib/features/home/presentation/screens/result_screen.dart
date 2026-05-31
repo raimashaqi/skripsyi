@@ -289,7 +289,23 @@ class _ResultScreenState extends State<ResultScreen> {
     return Scaffold(
       extendBodyBehindAppBar: true,
       appBar: AppBar(
-        title: const Text('Hasil Analisis'),
+        title: Row(
+          children: [
+            Image.asset(
+              'assets/images/logo.png',
+              height: 36,
+              width: 36,
+            ),
+            const SizedBox(width: 10),
+            const Text(
+              'kuku KU',
+              style: TextStyle(
+                fontWeight: FontWeight.bold,
+                color: Color(0xFF0F172A),
+              ),
+            ),
+          ],
+        ),
         leading: IconButton(
           icon: const Icon(Icons.arrow_back_ios_new),
           onPressed: () => Navigator.pop(context),

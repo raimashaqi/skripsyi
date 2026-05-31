@@ -26,7 +26,7 @@ class MyApp extends StatelessWidget {
           seedColor: const Color(0xFF6366F1),
           brightness: Brightness.light,
         ),
-        textTheme: GoogleFonts.outfitTextTheme(
+        textTheme: GoogleFonts.plusJakartaSansTextTheme(
           ThemeData.light().textTheme,
         ),
         appBarTheme: const AppBarTheme(

@@ -10,9 +10,25 @@ class HomeScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       extendBodyBehindAppBar: true,
-      backgroundColor: const Color(0xFFF8FAFC),
+      backgroundColor: Colors.transparent,
       appBar: AppBar(
-        title: const Text('Nail Checker'),
+        title: Row(
+          children: [
+            Image.asset(
+              'assets/images/logo.png',
+              height: 36,
+              width: 36,
+            ),
+            const SizedBox(width: 10),
+            const Text(
+              'kuku KU',
+              style: TextStyle(
+                fontWeight: FontWeight.bold,
+                color: Color(0xFF0F172A),
+              ),
+            ),
+          ],
+        ),
         actions: [
           PopupMenuButton<String>(
             icon: const Icon(Icons.more_vert),
@@ -40,171 +56,188 @@ class HomeScreen extends StatelessWidget {
           ),
         ],
       ),
-      body: SafeArea(
-        child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 24.0, vertical: 20.0),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.stretch,
-            children: [
-              const SizedBox(height: 20),
+      body: Container(
+        decoration: const BoxDecoration(
+          gradient: LinearGradient(
+            begin: Alignment.topLeft,
+            end: Alignment.bottomRight,
+            colors: [Color(0xFFF4F7FF), Color(0xFFE0E7FF)],
+          ),
+        ),
+        child: SafeArea(
+          child: Padding(
+            padding:
+                const EdgeInsets.symmetric(horizontal: 24.0, vertical: 20.0),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.stretch,
+              children: [
+                const SizedBox(height: 20),
 
-              // Welcome Header
-              const Text(
-                'Selamat Datang!',
-                style: TextStyle(
-                  fontSize: 32,
-                  fontWeight: FontWeight.w800,
-                  color: Color(0xFF0F172A),
-                  letterSpacing: -0.5,
+                // Welcome Header
+                const Text(
+                  'Selamat Datang!',
+                  style: TextStyle(
+                    fontSize: 32,
+                    fontWeight: FontWeight.w800,
+                    color: Color(0xFF0F172A),
+                    letterSpacing: -0.5,
+                  ),
                 ),
-              ),
-              const SizedBox(height: 12),
-              const Text(
-                'Deteksi dini kondisi kuku Anda dengan presisi tinggi menggunakan teknologi pemindai AI.',
-                style: TextStyle(
-                  fontSize: 16,
-                  color: Color(0xFF64748B),
-                  height: 1.6,
+                const SizedBox(height: 12),
+                const Text(
+                  'Dapatkan skrining awal untuk kuku anda bersama KukuKu!',
+                  style: TextStyle(
+                    fontSize: 16,
+                    color: Color(0xFF64748B),
+                    height: 1.6,
+                  ),
                 ),
-              ),
-              const SizedBox(height: 48),
+                const SizedBox(height: 48),
 
-              // Main Custom Layout (Matches Request)
-              Expanded(
-                child: Center(
-                  child: Container(
-                    width: double.infinity,
-                    constraints: const BoxConstraints(maxWidth: 320),
-                    decoration: BoxDecoration(
-                      color: const Color(
-                          0xFFF1F5F9), // Light background like the image
-                      borderRadius: BorderRadius.circular(32),
-                    ),
-                    child: CustomPaint(
-                      painter: DashedBorderPainter(
-                        color: const Color(0xFFCBD5E1),
-                        borderRadius: 32,
-                        strokeWidth: 2,
-                        dashWidth: 6,
-                        dashSpace: 4,
+                // Main Custom Layout (Matches Request)
+                Expanded(
+                  child: Center(
+                    child: Container(
+                      width: double.infinity,
+                      constraints: const BoxConstraints(maxWidth: 320),
+                      decoration: BoxDecoration(
+                        color: Colors.white.withValues(alpha: 0.7),
+                        borderRadius: BorderRadius.circular(32),
+                        boxShadow: [
+                          BoxShadow(
+                            color:
+                                const Color(0xFF6366F1).withValues(alpha: 0.05),
+                            blurRadius: 30,
+                            offset: const Offset(0, 10),
+                          ),
+                        ],
                       ),
-                      child: Padding(
-                        padding: const EdgeInsets.symmetric(
-                            vertical: 24, horizontal: 24),
-                        child: SingleChildScrollView(
+                      child: CustomPaint(
+                        painter: DashedBorderPainter(
+                          color: const Color(0xFF6366F1).withValues(alpha: 0.3),
+                          borderRadius: 32,
+                          strokeWidth: 2,
+                          dashWidth: 8,
+                          dashSpace: 6,
+                        ),
+                        child: Padding(
+                          padding: const EdgeInsets.symmetric(
+                              vertical: 24, horizontal: 24),
                           child: Column(
                             mainAxisSize: MainAxisSize.min,
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
-                              // Camera Icon Box
-                              Container(
-                                width: 80,
-                                height: 80,
-                                decoration: BoxDecoration(
-                                  color: const Color(0xFFE2E8F0),
-                                  borderRadius: BorderRadius.circular(20),
-                                ),
-                                child: const Center(
-                                  child: Icon(
-                                    Icons.camera_alt_rounded,
-                                    size: 40,
-                                    color: Color(
-                                        0xFF6366F1), // Keeping Indigo accent
+                                // Camera Icon Box
+                                Container(
+                                  width: 80,
+                                  height: 80,
+                                  decoration: BoxDecoration(
+                                    color: Colors.white,
+                                    shape: BoxShape.circle,
+                                    boxShadow: [
+                                      BoxShadow(
+                                        color: const Color(0xFF6366F1)
+                                            .withValues(alpha: 0.15),
+                                        blurRadius: 20,
+                                        spreadRadius: 2,
+                                        offset: const Offset(0, 8),
+                                      ),
+                                    ],
+                                  ),
+                                  child: const Center(
+                                    child: Icon(
+                                      Icons.camera_alt_rounded,
+                                      size: 40,
+                                      color: Color(
+                                          0xFF6366F1), // Keeping Indigo accent
+                                    ),
                                   ),
                                 ),
-                              ),
-                              const SizedBox(height: 24),
+                                const SizedBox(height: 24),
 
-                              // Text Section
-                              const Text(
-                                'Upload Foto Kuku',
-                                style: TextStyle(
-                                  fontSize: 20,
-                                  fontWeight: FontWeight.bold,
-                                  color: Color(0xFF0F172A),
+                                // Text Section
+                                const Text(
+                                  'Ayo mulai deteksi!',
+                                  style: TextStyle(
+                                    fontSize: 20,
+                                    fontWeight: FontWeight.bold,
+                                    color: Color(0xFF0F172A),
+                                  ),
                                 ),
-                              ),
-                              const SizedBox(height: 8),
-                              const Text(
-                                'Tap untuk pilih gambar dari galeri',
-                                textAlign: TextAlign.center,
-                                style: TextStyle(
-                                  fontSize: 14,
-                                  color: Color(0xFF64748B),
-                                ),
-                              ),
-                              const SizedBox(height: 32),
+                                const SizedBox(height: 8),
 
-                              // Color Pills Row
-                              Row(
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                children: [
-                                  _buildColorPill(const Color(0xFFD4B59E)),
-                                  const SizedBox(width: 12),
-                                  _buildColorPill(const Color(0xFF8B7355)),
-                                  const SizedBox(width: 12),
-                                  _buildColorPill(const Color(0xFFD9A5B3)),
-                                  const SizedBox(width: 12),
-                                  _buildColorPill(const Color(0xFF5C3A21)),
-                                ],
-                              ),
-                            ],
-                          ),
+                                const SizedBox(height: 32),
+
+                                // Color Pills Row
+                                Row(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: [
+                                    _buildColorPill(const Color(0xFFD4B59E)),
+                                    const SizedBox(width: 12),
+                                    _buildColorPill(const Color(0xFF8B7355)),
+                                    const SizedBox(width: 12),
+                                    _buildColorPill(const Color(0xFFD9A5B3)),
+                                    const SizedBox(width: 12),
+                                    _buildColorPill(const Color(0xFF5C3A21)),
+                                  ],
+                                ),
+                              ],
+                            ),
                         ),
                       ),
                     ),
                   ),
                 ),
-              ),
-              const SizedBox(height: 48),
+                const SizedBox(height: 48),
 
-              // Big Action Button
-              Container(
-                height: 68,
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(24),
-                  gradient: const LinearGradient(
-                    colors: [Color(0xFF6366F1), Color(0xFF4F46E5)],
-                    begin: Alignment.topLeft,
-                    end: Alignment.bottomRight,
-                  ),
-                  boxShadow: [
-                    BoxShadow(
-                      color: const Color(0xFF6366F1).withValues(alpha: 0.35),
-                      blurRadius: 24,
-                      offset: const Offset(0, 12),
+                // Big Action Button
+                Container(
+                  height: 68,
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(24),
+                    gradient: const LinearGradient(
+                      colors: [Color(0xFF6366F1), Color(0xFF4F46E5)],
+                      begin: Alignment.topLeft,
+                      end: Alignment.bottomRight,
                     ),
-                  ],
-                ),
-                child: ElevatedButton(
-                  onPressed: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) => const DetectionScreen(),
+                    boxShadow: [
+                      BoxShadow(
+                        color: const Color(0xFF6366F1).withValues(alpha: 0.35),
+                        blurRadius: 24,
+                        offset: const Offset(0, 12),
                       ),
-                    );
-                  },
-                  style: ElevatedButton.styleFrom(
-                    backgroundColor: Colors.transparent,
-                    shadowColor: Colors.transparent,
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(24),
-                    ),
+                    ],
                   ),
-                  child: const Text(
-                    'MULAI DETEKSI',
-                    style: TextStyle(
-                      fontSize: 18,
-                      fontWeight: FontWeight.bold,
-                      letterSpacing: 2.0,
-                      color: Colors.white,
+                  child: ElevatedButton(
+                    onPressed: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => const DetectionScreen(),
+                        ),
+                      );
+                    },
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: Colors.transparent,
+                      shadowColor: Colors.transparent,
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(24),
+                      ),
+                    ),
+                    child: const Text(
+                      'MULAI DETEKSI',
+                      style: TextStyle(
+                        fontSize: 18,
+                        fontWeight: FontWeight.bold,
+                        letterSpacing: 2.0,
+                        color: Colors.white,
+                      ),
                     ),
                   ),
                 ),
-              ),
-              const SizedBox(height: 24),
-            ],
+                const SizedBox(height: 24),
+              ],
+            ),
           ),
         ),
       ),
