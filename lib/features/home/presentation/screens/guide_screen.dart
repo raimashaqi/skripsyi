@@ -37,7 +37,7 @@ class _GuideScreenState extends State<GuideScreen>
             ),
             const SizedBox(width: 10),
             const Text(
-              'kuku KU',
+              'Panduan',
               style: TextStyle(
                 fontWeight: FontWeight.bold,
                 color: Color(0xFF0F172A),

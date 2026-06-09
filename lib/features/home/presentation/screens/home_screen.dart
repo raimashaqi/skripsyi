@@ -21,7 +21,7 @@ class HomeScreen extends StatelessWidget {
             ),
             const SizedBox(width: 10),
             const Text(
-              'kuku KU',
+              'Nail Sense',
               style: TextStyle(
                 fontWeight: FontWeight.bold,
                 color: Color(0xFF0F172A),
@@ -85,7 +85,7 @@ class HomeScreen extends StatelessWidget {
                 ),
                 const SizedBox(height: 12),
                 const Text(
-                  'Dapatkan skrining awal untuk kuku anda bersama KukuKu!',
+                  'Dapatkan skrining awal untuk kuku anda bersama Nail Sense!',
                   style: TextStyle(
                     fontSize: 16,
                     color: Color(0xFF64748B),
@@ -127,62 +127,62 @@ class HomeScreen extends StatelessWidget {
                             mainAxisSize: MainAxisSize.min,
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
-                                // Camera Icon Box
-                                Container(
-                                  width: 80,
-                                  height: 80,
-                                  decoration: BoxDecoration(
-                                    color: Colors.white,
-                                    shape: BoxShape.circle,
-                                    boxShadow: [
-                                      BoxShadow(
-                                        color: const Color(0xFF6366F1)
-                                            .withValues(alpha: 0.15),
-                                        blurRadius: 20,
-                                        spreadRadius: 2,
-                                        offset: const Offset(0, 8),
-                                      ),
-                                    ],
-                                  ),
-                                  child: const Center(
-                                    child: Icon(
-                                      Icons.camera_alt_rounded,
-                                      size: 40,
-                                      color: Color(
-                                          0xFF6366F1), // Keeping Indigo accent
+                              // Camera Icon Box
+                              Container(
+                                width: 80,
+                                height: 80,
+                                decoration: BoxDecoration(
+                                  color: Colors.white,
+                                  shape: BoxShape.circle,
+                                  boxShadow: [
+                                    BoxShadow(
+                                      color: const Color(0xFF6366F1)
+                                          .withValues(alpha: 0.15),
+                                      blurRadius: 20,
+                                      spreadRadius: 2,
+                                      offset: const Offset(0, 8),
                                     ),
-                                  ),
-                                ),
-                                const SizedBox(height: 24),
-
-                                // Text Section
-                                const Text(
-                                  'Ayo mulai deteksi!',
-                                  style: TextStyle(
-                                    fontSize: 20,
-                                    fontWeight: FontWeight.bold,
-                                    color: Color(0xFF0F172A),
-                                  ),
-                                ),
-                                const SizedBox(height: 8),
-
-                                const SizedBox(height: 32),
-
-                                // Color Pills Row
-                                Row(
-                                  mainAxisAlignment: MainAxisAlignment.center,
-                                  children: [
-                                    _buildColorPill(const Color(0xFFD4B59E)),
-                                    const SizedBox(width: 12),
-                                    _buildColorPill(const Color(0xFF8B7355)),
-                                    const SizedBox(width: 12),
-                                    _buildColorPill(const Color(0xFFD9A5B3)),
-                                    const SizedBox(width: 12),
-                                    _buildColorPill(const Color(0xFF5C3A21)),
                                   ],
                                 ),
-                              ],
-                            ),
+                                child: const Center(
+                                  child: Icon(
+                                    Icons.camera_alt_rounded,
+                                    size: 40,
+                                    color: Color(
+                                        0xFF6366F1), // Keeping Indigo accent
+                                  ),
+                                ),
+                              ),
+                              const SizedBox(height: 24),
+
+                              // Text Section
+                              const Text(
+                                'Ayo mulai deteksi!',
+                                style: TextStyle(
+                                  fontSize: 20,
+                                  fontWeight: FontWeight.bold,
+                                  color: Color(0xFF0F172A),
+                                ),
+                              ),
+                              const SizedBox(height: 8),
+
+                              const SizedBox(height: 32),
+
+                              // Color Pills Row
+                              Row(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  _buildColorPill(const Color(0xFFD4B59E)),
+                                  const SizedBox(width: 12),
+                                  _buildColorPill(const Color(0xFF8B7355)),
+                                  const SizedBox(width: 12),
+                                  _buildColorPill(const Color(0xFFD9A5B3)),
+                                  const SizedBox(width: 12),
+                                  _buildColorPill(const Color(0xFF5C3A21)),
+                                ],
+                              ),
+                            ],
+                          ),
                         ),
                       ),
                     ),

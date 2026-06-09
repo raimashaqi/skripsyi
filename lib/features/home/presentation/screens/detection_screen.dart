@@ -85,7 +85,7 @@ class _DetectionScreenState extends State<DetectionScreen> {
 
       print('DEBUG: Mengirim request POST ke http://127.0.0.1:8000/predict');
       final response = await dio.post(
-        'https://dried-stipulate-employee.ngrok-free.dev/predict',
+        'http://127.0.0.1:8000/predict',
         data: formData,
       );
 
